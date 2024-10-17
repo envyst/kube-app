@@ -16,7 +16,8 @@ spec:
     spec:
       containers:
       - name: vprodb
-        image: vprofile/vprofiledb
+        image: vprofile/vprofiledb:V1
+        imagePullPolicy: IfNotPresent
           #args:
           #- "--ignore-db-dir"
           #- "lost+found"
@@ -48,6 +49,7 @@ spec:
       initContainers:
         - name: busybox
           image: busybox:latest
+          imagePullPolicy: IfNotPresent
           args: ["rm", "-rf", "/var/lib/mysql/lost+found"]
           volumeMounts:
             - name: vpro-db-data
